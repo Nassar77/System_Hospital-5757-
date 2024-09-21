@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Report Confirmation";
+}
+
+<h2 class="text-center">Report Confirmation</h2>
+
+<div class="container d-flex flex-column align-items-center">
+    <!-- Display success message -->
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success text-center">@ViewBag.SuccessMessage</div>
+    }
+
+    <div class="mt-3">
+        <a asp-action="CreateReport" class="btn btn-primary mr-2">Upload Another Report</a>
+        <a asp-action="Index" class="btn btn-info">View All Reports</a>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@using HospitalSystem.DAL.Entity
+@model IEnumerable<Room>
+
+@{
+    ViewData["Title"] = "AllRooms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">All Rooms</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Room Name</th>
+                <th>Capacity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var room in Model)
+            {
+                <tr>
+                    <td>@room.RName</td>
+                    <td>@room.Capacity</td>
+                    <td>
+                        <a asp-action="EditRoom" asp-route-id="@room.ID" class="btn btn-warning">Edit</a>
+                        <form asp-action="DeleteRoom" asp-route-id="@room.ID" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-center mb-4">
+        <a asp-action="AddRoom" class="btn btn-primary">Add New Room</a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+    {
+        <div class="alert alert-success mt-3">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+</div>

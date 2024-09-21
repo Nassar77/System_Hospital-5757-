@@ -1,0 +1,98 @@
+﻿@using HospitalSystem.BLL.ModelVM.Account
+@model LoginVM
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/custom.css" />
+</head>
+
+<div class="container">
+    <div class="row">
+        <!-- Left Side: Image and Create Account -->
+        <div class="col-md-6">
+            <div class="image-container">
+                <img src="~/ProfileImage/doctor1.jpg" alt="Doctor" class="img-fluid">
+                <h2>Don't Have an Account?</h2>
+                <a asp-controller="Account" asp-action="Register" class="btn btn-success">Create Account</a>
+            </div>
+        </div>
+
+        <!-- Right Side: Login Form -->
+        <div class="col-md-6">
+            <h2>Login to RED STAR</h2>
+            <p>Get your appointments setup directly in Red star site from here!</p>
+
+            <form asp-controller="Account" asp-action="LoginSubmitted">
+                @{
+                    if (TempData["EmailConfirmation"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["EmailConfirmation"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    if (TempData["EmailConfirmationVerified"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["EmailConfirmationVerified"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    
+                }
+
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input type="email" asp-for="Email" class="form-control" id="email" placeholder="Enter email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <input type="password" asp-for="Password" class="form-control" id="password" placeholder="Enter password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-check">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label">Remember Me</label>
+                </div>
+
+                <a asp-controller="Account" asp-action="ForgotPassword">Forgot your password?</a>
+
+                <button type="submit" class="btn btn-success mt-2">Login</button>
+            </form>
+
+            <hr>
+            <p>Or Login With Social Media:</p>
+            <form asp-action="ExternalLogin" asp-controller="Account">
+                <div>
+                    @if (Model.Schemes == null || !Model.Schemes.Any())
+                    {
+                        <div>No external login providers have configured</div>
+                    }
+                    else
+                    {
+                        @foreach (var provider in Model.Schemes)
+                        {
+                            <button type="submit"
+                                    class="btn btn-primary"
+                                    name="provider"
+                                    value="@provider.Name"
+                                    title="Login using your @provider.Name account">
+                                @provider.DisplayName
+                            </button>
+                        }
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}

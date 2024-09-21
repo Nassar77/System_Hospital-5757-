@@ -1,0 +1,65 @@
+﻿@using HospitalSystem.BLL.ModelVM.Patient
+@model PatientProfileVM
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg" style="max-width: 800px; margin: auto;">
+        <div class="row g-0">
+            <!-- Patient Image Section -->
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img src="~/ProfileImage/Profile/@Model.Image" class="img-fluid rounded-circle p-3" alt="Patient Image" style="max-height: 250px;">
+            </div>
+
+            <!-- Patient Details Section -->
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title text-center text-primary">Patient Profile</h3>
+                    <hr>
+
+                    <p class="card-text">
+                        <strong>Full Name:</strong> @Model.Fullname
+                    </p>
+                    <p class="card-text">
+                        <strong>National Id:</strong> @Model.NationalId
+                    </p>
+                    <p class="card-text">
+                        <strong>Date of Birth:</strong> @Model.DOB.ToString("dd/MM/yyyy")
+                    </p>
+                    <p class="card-text">
+                        <strong>Phone Number:</strong> @Model.PhoneNumber
+                    </p>
+                    <p class="card-text">
+                        <strong>Address:</strong> @Model.Address
+                    </p>
+                    <p class="card-text">
+                        <strong>City:</strong> @Model.City
+                    </p>
+
+                    <hr>
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-center">
+                        <a href="/Account/UpdateProfile" class="btn btn-primary me-2">
+                            Edit Profile
+                        </a>
+                        <a href="/Account/Delete" class="btn btn-danger me-2">
+                            Delete Profile
+                        </a>
+
+                        <a href="/Home/Index" class="btn btn-secondary">
+                            Cancel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

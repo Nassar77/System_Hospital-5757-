@@ -1,0 +1,33 @@
+﻿@using HospitalSystem.BLL.ModelVM.MedicalReport
+@model CreateReportVM
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Create Medical Report</h2>
+
+    <form asp-action="CreateReport" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="ReportID" class="control-label">Report ID</label>
+            <input asp-for="ReportID" class="form-control" />
+            <span asp-validation-for="ReportID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PatientNationalId" class="control-label">Patient National ID</label>
+            <input asp-for="PatientNationalId" class="form-control" />
+            <span asp-validation-for="PatientNationalId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ReportImage" class="control-label">Report Image</label>
+            <input type="file" asp-for="ReportImage" class="form-control" />
+            <span asp-validation-for="ReportImage" class="text-danger"></span>
+        </div>
+
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+        }
+
+        <button type="submit" class="btn btn-primary btn-block">Create Report</button>
+    </form>
+</div>

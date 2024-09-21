@@ -1,0 +1,42 @@
+﻿@model IEnumerable<HospitalSystem.DAL.Entity.MedicalReport>
+@{
+    ViewData["Title"] = "MyReports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Your Medical Reports</h1>
+
+@if (Model?.Any()!=null)
+{
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Report ID</th>
+                    <th>Creation Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var report in Model)
+                {
+                    <tr>
+                        <td>@report.ReportID</td>
+                        <td>@report.DateCreated</td>
+                        <td>
+                            <a class="btn btn-success" href="@Url.Action("ReportDetails", "MedicalReport", new { ReportID = report.ReportID, ReportImagePath = report.ReportImagePath, PatientNationalId = report.PatientNationalId })">View</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p class="text-center">No reports found.</p>
+}
+
+                    
+                   

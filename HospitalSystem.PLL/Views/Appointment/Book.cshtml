@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Book an Appointment";
+}
+
+<h2 class="text-center mt-4">Book an Appointment</h2>
+
+<!-- Display error message if no rooms are available -->
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger text-center">@ViewBag.ErrorMessage</div>
+}
+
+<!-- Form to select booking date and time -->
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="col-md-6">
+        <form asp-action="Book" method="post">
+            <div class="form-group mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" asp-for="@User.Identity.Name" placeholder="Enter Name">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="date">Select Date:</label>
+                <input type="date" class="form-control" id="date" name="date" required />
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="time">Select Time:</label>
+                <input type="time" class="form-control" id="time" name="time" required />
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Book Appointment</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿.container {
+    margin-top: 20px;
+}
+
+.image-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .image-container img {
+        width: 80%;
+        border-radius: 10px;
+    }
+
+    .image-container h2 {
+        margin-top: 20px;
+    }
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+button {
+    width: 100%;
+}
+
+hr {
+    margin: 20px 0;
+}

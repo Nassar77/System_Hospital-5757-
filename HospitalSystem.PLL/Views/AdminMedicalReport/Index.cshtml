@@ -1,0 +1,57 @@
+﻿@using HospitalSystem.DAL.Entity
+@model IEnumerable<MedicalReport>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Medical Reports</h2>
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Medical Reports</h2>
+
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Report ID</th>
+                <th>Patient NationalId</th>
+                <th>Created On</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var report in Model)
+                {
+                    <tr>
+                        <td>@report.ReportID</td>
+                        <td>@report.PatientNationalId</td>
+                        <td>@report.DateCreated</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@report.ID" class="btn btn-warning">Edit</a>
+                            <form asp-action="Delete" asp-route-id="@report.ID" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this report?');">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3" class="text-center">No reports available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success">
+        @ViewBag.SuccessMessage
+    </div>
+}

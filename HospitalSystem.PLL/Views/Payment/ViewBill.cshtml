@@ -1,0 +1,21 @@
+﻿@model HospitalSystem.DAL.Entity.Bill
+
+<div class="container d-flex justify-content-center align-items-center min-vh-85">
+    <div class="card p-4 shadow-sm">
+        <h2 class="text-center mb-3">Bill Details</h2>
+
+        <p><strong>Bill ID:</strong> @Model.ID</p>
+        <p><strong>Amount:</strong> $@Model.Amount</p>
+
+
+        @if (Model.IsPaid)
+        {
+            <p><strong>Status:</strong> Paid on @Model.PaymentDate?.ToString("MM/dd/yyyy")</p>
+        }
+        else
+        {
+            <p><strong>Status:</strong> Unpaid</p>
+            <a href="@Url.Action("PayBill", "Payment", new { id = Model.ID })" class="btn btn-primary">Pay</a>
+        }
+    </div>
+</div>

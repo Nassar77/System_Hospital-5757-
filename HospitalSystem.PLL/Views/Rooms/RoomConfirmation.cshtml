@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "RoomConfirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Room Confirmation</h2>
+
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+    {
+        <div class="alert alert-success mb-4">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info mb-4">
+            Operation completed successfully.
+        </div>
+    }
+
+    <div class="text-center">
+        <a asp-action="AllRooms" class="btn btn-primary">View All Rooms</a>
+    </div>
+</div>

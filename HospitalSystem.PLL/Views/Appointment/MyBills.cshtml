@@ -1,0 +1,50 @@
+﻿@model IEnumerable<HospitalSystem.DAL.Entity.Bill>
+
+@{
+    ViewData["Title"] = "My Bills";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center">My Bills</h2>
+
+            @if (Model.Any())
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Bill ID</th>
+                            <th>Amount</th>
+                            <th>status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var bill in Model)
+                        {
+                            <tr>
+                                <!-- Make each row clickable -->
+                                <td>@bill.ID</td>
+                                <td>@bill.Amount</td>
+                                @if (bill.IsPaid == false)
+                                {
+
+                                    <td><a href="@Url.Action("ViewBill", "Payment", new { id = bill.ID })" class="btn btn-danger">Unpaid</a></td>
+                                }
+                                else
+                                {
+                                    <td><span class="btn btn-success">Paid</span></td>
+
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-center">You have no bills.</p>
+            }
+        </div>
+    </div>
+</div>

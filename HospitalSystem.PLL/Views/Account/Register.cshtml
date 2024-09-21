@@ -1,0 +1,97 @@
+﻿@using HospitalSystem.BLL.ModelVM.Account
+@model RegistrationVM
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/Register.css" />
+</head>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Left Side: Image -->
+        <div class="col-md-6">
+            <div class="image-container">
+                <img src="~/ProfileImage/doctors2.jpg" alt="Doctors" class="img-fluid">
+            </div>
+        </div>
+
+        <!-- Right Side: Registration Form -->
+        <div class="col-md-6">
+            <h4 class="form-header">Sign up for a new account</h4>
+            <form asp-controller="Account" asp-action="RegisterUser" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label for="fullName">Fullname</label>
+                    <input asp-for="FullName" type="text" class="form-control" id="fullName" placeholder="Enter full name" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="UserName">UserName</label>
+                    <input asp-for="UserName" type="text" class="form-control" id="UserName" placeholder="Enter User name" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="emailAddress">Email address</label>
+                    <input asp-for="Email" type="email" class="form-control" id="emailAddress" placeholder="Enter email" />
+                    <small id="emailAddressSm" class="form-text text-muted">We'll never share your email with anyone else.</small> <br />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="password">Password</label>
+                    <input asp-for="Password" type="password" class="form-control" id="password" placeholder="Enter password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="cofirmPassword">Confirm password</label>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="PhoneNumber">PhoneNumber</label>
+                    <input asp-for="PhoneNumber" type="text" class="form-control" id="PhoneNumber" placeholder="Enter PhoneNumber" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="DOB">Data of Birth</label>
+                    <input asp-for="BirthDate" type="date" class="form-control" id="DOB" placeholder="Enter DOB" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Gender">Gender</label>
+                    <input asp-for="Gender" type="text" class="form-control" id="Gender" placeholder="Enter Gender" />
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="NationalId">NationalId</label>
+                    <input asp-for="NationalId" type="text" class="form-control" id="NationalId" placeholder="Enter NationalId" />
+                    <span asp-validation-for="NationalId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="ProfileImage">Upload Profile Image</label>
+                    <input asp-for="ProfileImage" type="file" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-outline-success mt-2 btn-register">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}

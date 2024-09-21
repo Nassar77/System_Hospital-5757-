@@ -1,0 +1,24 @@
+﻿@model IEnumerable<HospitalSystem.DAL.Entity.Bill>
+
+@{
+    ViewData["Title"] = "Booking Confirmation";
+}
+
+<h2 class="text-center mt-4">Booking Confirmation</h2>
+
+<!-- Display success message with booking details -->
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success text-center">@ViewBag.SuccessMessage</div>
+
+    <div class="text-center">
+        <p>Room: <strong>@ViewBag.RoomName</strong></p>
+        <p>Date: <strong>@ViewBag.BookingDate</strong></p>
+        <p>Time: <strong>@ViewBag.BookingTime</strong></p>
+    </div>
+}
+
+<div class="text-center mt-4">
+    <a asp-action="Book" class="btn btn-primary me-2">Book Another Appointment</a>
+    <a asp-action="MyBills" asp class="btn btn-warning">Pay</a>
+</div>
